@@ -29,4 +29,4 @@ typedef struct
   uint8_t Duree_Note_2: 4, Duree_Note_1: 4;
 } DOUBLE_NOTE;
 
-publication initiale et discussions : https://forum.arduino.cc/t/music-box-nano-rfid/1230087/31
+publication initiale et discussions : https://forum.arduino.cc/t/music-box-nano-rfid/1230087
