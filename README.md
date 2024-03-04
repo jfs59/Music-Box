@@ -1,5 +1,6 @@
 
-<CENTER>![image](https://github.com/jfs59/Music-Box/assets/34236389/91bb17d1-5d65-435f-bbca-633ae91eb23e)
+<CENTER>![image](https://github.com/jfs59/Music-Box/assets/34236389/f027bde4-0d56-43dd-b128-40dbbb946b5d)
+
 <CENTER/>
 
 Idée: Réaliser une Music Box basée sur arduino tone() et avec mélodie interchangeable.
