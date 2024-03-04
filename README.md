@@ -1,3 +1,7 @@
+
+<CENTER>![image](https://github.com/jfs59/Music-Box/assets/34236389/91bb17d1-5d65-435f-bbca-633ae91eb23e)
+<CENTER/>
+
 Idée: Réaliser une Music Box basée sur arduino tone() et avec mélodie interchangeable.
 Les mélodies sont codées dans la zone données d'une carte RFID Mifare 1 K.
 
