@@ -1,5 +1,7 @@
 
-<CENTER>![image](https://github.com/jfs59/Music-Box/assets/34236389/f027bde4-0d56-43dd-b128-40dbbb946b5d)
+<CENTER>
+ ![image](https://github.com/jfs59/Music-Box/assets/34236389/703e9e96-b567-47d7-be0c-8042a5210584)
+
 
 <CENTER/>
 
