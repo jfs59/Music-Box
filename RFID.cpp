@@ -1,4 +1,4 @@
-
+#include "debug.h"
 #include "RFID.h"
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
@@ -27,13 +27,13 @@ bool selectionner_rfid () {
 
   if ( ! mfrc522.PICC_IsNewCardPresent()) // Vérification nouvelle carte
   {
-    Serial.println(F("Pas de nouvelle carte"));
+    D_println(F("Pas de nouvelle carte"));
     return false;
   }
 
   if ( ! mfrc522.PICC_ReadCardSerial()) // sélectionner la carte
   {
-    Serial.println(F("Pas de serial"));
+    D_println(F("Pas de serial"));
     return false;
   }
   return true;
@@ -82,7 +82,7 @@ void dump_deci_byte_array(byte * buffer, byte bufferSize) {
 }
 void dump_byte_array(byte * buffer, int bufferSize) {
   for (int i = 0; i < bufferSize; i++) {
-    if (i % 16 == 0) Serial.println();
+    if (i % 16 == 0) D_println();
     Serial.print(buffer[i] < 0x10 ? " 0" : " ");
     Serial.print(buffer[i], HEX);
   }

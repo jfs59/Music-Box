@@ -1,3 +1,4 @@
+#include "debug.h"
 #include "RFID.h"
 #include "Melodie.h"
 #include "Notes.h"
@@ -17,7 +18,7 @@ bool Melodie_OK = false;
 
 void charger_melodie()
 {
-  Serial.println("Chargement melodie" );
+ D_println("Chargement melodie" );
   Melodie_OK = false;
   if (lire_contenu_rfid())
   {
@@ -30,10 +31,10 @@ void charger_melodie()
     premier_triplet = (DOUBLE_NOTE*) & (p->Suite_de_notes);
     triplet_en_cours = premier_triplet;
 
-    Serial.print(F("Auteur: ")); Serial.println(Titre_melody);
-    Serial.print(F("Titre: ")); Serial.println(Auteur_melody);
-    Serial.print(F("NBNotes: ")); Serial.println(nombre_notes);
-    Serial.print(F("Tempo: ")); Serial.println(tempo);
+    D_print(F("Auteur: ")); D_println(Titre_melody);
+    D_print(F("Titre: ")); D_println(Auteur_melody);
+    D_print(F("NBNotes: ")); D_println(nombre_notes);
+    D_print(F("Tempo: ")); D_println(tempo);
 
     calcul_duree_Notes(tempo);
     Melodie_OK = true;
@@ -43,26 +44,26 @@ void charger_melodie()
 void calcul_duree_Notes(uint8_t tempo) {
 
   long note_entiere =  (60000 * 4) / tempo;// duree note entiere en ms
-  Serial.println(F("Durée des notes en ms"));
+  D_println(F("Durée des notes en ms"));
   for (int i = 1; i < 16; i++)
   {
     duree_Note[i] = note_entiere / 128 * pgm_read_byte(&diviseur_Tempo[i]);
-    Serial.print(duree_Note[i]);   Serial.print(F(" | "));
+    D_print(duree_Note[i]);   D_print(F(" | "));
   }
-  Serial.println();
+  D_println();
 }
 
 void jouer_melodie()
 {
   note_encours = 0;
-  Serial.println(F("Lecture melodie"));
+  D_println(F("Lecture melodie"));
   for  (int i = 0; i < nombre_notes; i++)
   {
     if (digitalRead(bouton_depart_stop_melody) == LOW)
     {
       delay(100);
       while (digitalRead(bouton_depart_stop_melody) == LOW) {}
-      Serial.println(F("Stop melodie"));
+      D_println(F("Stop melodie"));
       note_encours = 0;
       delay(2000);
       return;
@@ -87,7 +88,7 @@ SIMPLE_NOTE lire_note(int note_index)
   triplet_en_cours = premier_triplet;
   saut = floor(note_index / (float)2 );
   triplet_en_cours += saut;
-  //Serial.print(note_index); Serial.print(" "); Serial.println(saut);
+  //D_print(note_index); D_print(" "); D_println(saut);
   if (note_index & 1) {
     result.Note = triplet_en_cours->Note_2;
     result.Duree = triplet_en_cours->Duree_Note_2;
@@ -95,6 +96,6 @@ SIMPLE_NOTE lire_note(int note_index)
     result.Note = triplet_en_cours->Note_1;
     result.Duree = triplet_en_cours->Duree_Note_1;
   }
-  //Serial.print("Note:"); Serial.print( result.Note); Serial.print(", duree:"); Serial.println(result.Duree);
+  //D_print("Note:"); D_print( result.Note); D_print(", duree:"); D_println(result.Duree);
   return result;
 }

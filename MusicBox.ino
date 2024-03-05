@@ -1,5 +1,10 @@
+#include "debug.h"
 
 // MusicBox version 2 jfs59 2024
+
+
+#define VERSION_MUSICBOX 1 // passer a 0 pour version simplifiée
+
 
 #define SKETCH_VERSION "2.0.00"
 #define DATE_VERSION "04/03/2024 14:00:03"
@@ -18,20 +23,26 @@ const char Annee[] PROGMEM = "2024";
 
 void setup() {
 
-  Serial.begin(115200);
+  D_SerialBegin(115200);
   pinMode(buzzerPin, OUTPUT);
   pinMode(bouton_depart_stop_melody, INPUT_PULLUP);// resistance pas presente
   pinMode(bouton_load_melody, INPUT_PULLUP);// resistance pas presente
 
+#if VERSION_MUSICBOX
   initialiser_rfid();
   init_interrupt();
   SetupTwiOled();
   SetupPixOled();
   splash();
+#else
+  initialiser_rfid();
+#endif
+
 }
 
 void loop() {
-
+  
+#if VERSION_MUSICBOX
   if (digitalRead(bouton_depart_stop_melody) == LOW) {
     //Serial.println("jouer la melodie");
     delay(100);
@@ -70,4 +81,9 @@ void loop() {
     jouer_note_en_cours();
     note_encours++;
   }
+  
+#else
+  charger_melodie();
+ if(Melodie_OK)jouer_melodie();
+ #endif
 }
