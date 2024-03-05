@@ -33,3 +33,5 @@ typedef struct
 } DOUBLE_NOTE;
 
 publication initiale et discussions : https://forum.arduino.cc/t/music-box-nano-rfid/1230087
+
+Une version simplifié avec le seul lecteur RFID peut s'obtenir en changeant les directives de compilation
